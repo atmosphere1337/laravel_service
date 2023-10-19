@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use Mail;
+use App\Mail\Mailer;
 
 class myController extends Controller
 {
@@ -16,6 +18,7 @@ class myController extends Controller
 		]);
 		$model = new Person($data);
 		$model->save();
+		Mail::to('boldyrevstudy@gmail.com')->send(new Mailer($model));
 		return response()->json([
 		'hello' => '1',
 		'world' => '2',
