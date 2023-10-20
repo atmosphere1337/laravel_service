@@ -12,9 +12,9 @@ class myController extends Controller
     public function main(Request $request)
 	{
 		$data = $request->validate([
-			'name' => 'required',
-			'number' => 'required',
-			'mail' => 'required',
+			'name' => 'required|min:2',
+			'number' => 'required|numeric|digits:11',
+			'mail' => 'required|email',
 		]);
 		$model = new Person($data);
 		$model->save();

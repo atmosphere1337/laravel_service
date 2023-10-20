@@ -20,3 +20,8 @@ database/migration/2023_10_18_231618_database
 
 AppPasswords feature by Gmail if 2 factor authentication is enabled.
 JQuery is used to perform AJAX requests.
+
+Field requirements:
+	'name' => 'required|min:2',
+	'number' => 'required|numeric|digits:11',
+	'mail' => 'required|email',
