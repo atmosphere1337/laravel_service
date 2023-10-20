@@ -20,8 +20,7 @@ class myController extends Controller
 		$model->save();
 		Mail::to('boldyrevstudy@gmail.com')->send(new Mailer($model));
 		return response()->json([
-		'hello' => '1',
-		'world' => '2',
+		'success' => 'true',
 		]);	
 	}
 }

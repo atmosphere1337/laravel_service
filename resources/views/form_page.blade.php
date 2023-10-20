@@ -21,21 +21,8 @@
 				<input type="submit">
 			</div>
 		</form>
-		<form method="POST" action="/process">
-			@csrf
-			<div>
-				<input name="name">
-			</div>
-			<div>
-				<input name="number">
-			</div>
-			<div>
-				<input name="mail">
-			</div>
-			<div>
-				<input type="submit">
-			</div>
-		</form>
+		<div id="msg">
+		</div>
 		<script>
 			$(document).ready(function(){
 				let form = '#send_form';
@@ -49,13 +36,23 @@
 						contentType: false,
 						cache: false,
 						processData: false,
+						accept: 'application/json',
 						success:function(response)
 						{
 							$(form).trigger("reset");	
-							alert(response.success);
+							$('#msg').html('Done!');
+							$('#msg').css('color', 'green');
 						},
-						error: function(xhr, status, error) {
-							alert('server_error');
+						error: function(data) {
+							let parsedErrors = data.responseJSON.errors;
+							let output = "Error!";
+							for (element in parsedErrors)
+							{
+								output += " " + parsedErrors[element];
+							}
+							$('#msg').html(output);
+							$('#msg').css('color', 'red');
+
 						}
 					});
 				});
